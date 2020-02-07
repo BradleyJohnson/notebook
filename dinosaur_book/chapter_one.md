@@ -55,18 +55,30 @@
         - Really good explanation of distinction between kernel and non-kernel programs [here](https://web.archive.org/web/20161008033553/https://superuser.com/questions/329442/what-is-there-in-an-operating-system-other-than-the-kernel/329479#329479)
       - Application Programs: all programs not associated w/ the OS
 
-###### Section 1.1 - Computer-System Organization
+###### Section 1.2 - Computer-System Organization
 
   - "A modern general-purpose computer system consists of one or more CPUs and a number of device controllers connected through a common bus that provides access between component and shared memory"
     - how are device controllers implemented? are they hardware or software?
       - device controllers have their own local buffer storage and special-purpose registers.
         - Bonus Question! How do registers get allocated? For instance, if a new keyboard or microphone is plugged in?
           - Maybe a misunderstanding on my part. The buffer and registers are local to the device controller itself which is a physical piece of hardware separate from the CPU.
-      - OSs usually have a device driver for each device controller which provides a consisten interface
+      - OSs usually have a device driver for each device controller which provides a consistent interface
+      - See 1.2.1 Header for more info
 
     - is a bus smart? or just a dumb pipe?
       - Not a great question. They can be implemented in various, complex configurations but ultimately just ship data between components or systems.
 
   **1.2.1 Interrupts**
+
+  - to start an io operation...
+    - the device driver loads the appropriate registers in the device controller
+    - the device controller examines the content of the registers to determine what action to take
+      - For instance, 'read a character from the keyboard'
+    - controller starts transfer of data from device to its local buffer
+    - controller informs the device driver it's done
+    - device driver then gives
+    - but how does the controller tell the driver it is done? via interrupt
+
+  **1.2.1.1 Overview**
 
   - 
