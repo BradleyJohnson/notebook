@@ -81,4 +81,32 @@
 
   **1.2.1.1 Overview**
 
+  - Hardware can interrupt at any time by sending a signal to the CPU on the system bus
+    - there are many buses but the system bus is primary for main computer component communication
+  - What happens during an interrupt?
+    - the cpu stops what it's presently doing
+    - immediately transfers execution to a fixed location
+    - fixed location usually contains the starting address where the service routine for that interrupt is stored
+    - interrupt routine executes
+    - on completion, the cpu resumes the inrerrupted work
+
+  **1.2.1.1 Implementation**
+
+  - cpu has a wire called interrupt-request line
+    - cpu senses the line after executing every instruction
+    - when cpu detects a controller sent an interrupt the interrupt handler...
+      - saves any state it needs to
+      - determines cause of interrupt
+        - reads interrupt number
+      - performs the computation
+        - jumps to interrupt handler routine by using the interrupt number as an index into the interrupt vector (in memory table of various interrupt routines)
+        - starts the routine associated with the interrupt index
+      - restores state
+      - executes return_from_interrupt
+
+  - device controllers "raise" an interrupt
+  - a cpu "catches" the interrupt
+  - a cpu "dispatches" the interrupt to the handler
+  - an interrupt handler "clears" the interrupt by servicing the interrupt
+
   - 
