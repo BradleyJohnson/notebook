@@ -298,3 +298,102 @@
     - supporting primitives for manipulating files and directories
     - mapping files onto mass storage
     - backing up files on stable (non-volatile) storage media
+
+  **1.5.4 Mass-Storage Management**
+
+  - the OS is responsible for these things wrt secondary storage management:
+    - mounting and unmounting
+    - free-space management
+    - storage allocation
+    - disk scheduling
+    - partitioning
+    - protection
+
+  **1.5.5 Cache Management**
+
+  - we know that programs and data can be stored in main memory which is relatively fast compared to secondary storage
+    - however, as it is used it will be copied into a faster storage systel, the cache, on a temporary basis
+    - as the name implies, when the system needs data it will check the cache first to see if it's present.
+  - because the cache is usually small, cache management is very important
+
+  - an interesting situation that raises questions about cache management...
+    - a request is made to increment integer A from a file that is on disk
+      - the storage block that contains A is moved from disk and copied into
+        - main memory
+        - and the cache
+        - and a register
+      - A is incremented in the register
+      - now A exists in multiple places and its true state in the register is different from the other locations
+      - in a single process environment that's no problem since anything that needs access to A will get it from the top-most position in the storage hierarchy, the register in this case.
+      - Things get very complicated with multitasking systems since cpus will have their own cache (and potentiall their own copy of A)
+        - usually solved natively by the hardware, not an OS concern
+      - Things get very very complicated with distributed systems
+  
+  **1.5.6 I/O System Management**
+
+  - the UNIX io subsystem consists of
+    - a memory management component that provides buffering, caching, and spooling
+    - a general device-driver interface
+    - drivers for specific hardware devices
+
+###### Section 1.6 - Security and Protection
+
+  - `protection` is any mechanism for controlling the access of processes or users to the resources defined by the computer system
+  - a system with adequate `protection` can still allow for inappropriate access such as in the case of stolen credentials.
+
+  - `security` is the defense of the system from internal or external attacks
+    - includes viruses, worms, ddos, theft of service
+
+###### Section 1.7 - Virtualization
+
+  - `virtualization` is the technology that allows us to abstract the hardware (cpu, memory, disks, NICs) of a single machine into different execution environments, creating the semblance that each environment is running on its own system
+
+  - `emulation` is related, it involves simulating computer hardware in software and is typically used when the source cpu is different from the target cpu type
+    - eg, when apple switched from IBM Power CPU to Intelx86 CPU it included an emulation facility which allowed programs compiled for Power CPU to run on Intelx86
+
+###### Section 1.6 - Distributed Systems
+
+  - distributed systems are simply a collection of physically separate computer system that are networked together to provide access to the various resources attached to the individual nodes
+
+  - some operating systems are designed specifically with distributed systems in mind
+  - a `network operating system` is on that provides features such as file sharing across the network or allowing processes on different nodes to communicate
+
+###### Section 1.6 - Kernel Data Structures
+
+  **1.9.1 Lists, Stacks, and Queues**
+
+  - an array is slightly unique from other data structures since each element can be directly accessed
+    - interestingly, main memory is constructed as an array
+      - if a unit of data is larger than a byte, it can be given multiple bytes
+  - in contrast to arrays, list items cannot be directly accessed, they must be accessed in order
+    - singly linked list, each item points to its successor
+    - doubly linked list, each item can point to its predecessor and successor
+    - circularly linked, like singly linked but the last item points to the first rather than null
+
+  - a `stack` is a sequentiall ordered data structure that uses last in, first out for removing items
+    - operations for adding and removing from the stack are push and pop
+    - often used when invoking function calls
+
+  - a `queue` in contrast to a stack uses first in, first out
+
+  **1.9.2 Trees**
+
+  - a `tree` can be used to represent hierarchical data. data is linked through parent-child relationships
+  - types of trees:
+    - general tree, parents may have any number of children
+    - binary tree, parent may have up to two children, left and right
+    - binary search tree, similar to binary tree but there's an ordering to the children (eg left child must always be less than right child)
+    
+  **1.9.2 Hash Functions and Maps**
+
+  - a `hash function` takes data as an input, performs a numeric operation on it and returns a numeric value
+    - this numeric return can then be used as an index into a table (typically an array) to quickly retrieve data
+    - one trouble here is that unique inputs can produce the same output, called a hash collision
+    - a clever solution is to have a linked list at the index of the hash collision that includes all of the inputs that produce the hash collision
+
+  - a `hash map` is produced by using a hash function to establish key-value pairs
+    - once the mapping is established we can hash the key to determine the value
+    - for example, let's presume a [key:value] mapping of [username:password], authentication proceeds as follows
+      - user enters their password
+      - hash function is applied to the username
+      - password is then compared to what was entered
