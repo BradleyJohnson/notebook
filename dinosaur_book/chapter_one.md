@@ -20,8 +20,6 @@
       |                                ▼             /                        | KERNEL MODE
       |                            execute system call                        | mode bit = 0
       +-----------------------------------------------------------------------+
-  - Discuss how operating systems are used in various computing environments.
-    - *NEEDS ANSWER*
   - Provide examples of free and open-source operating systems.
     - GNU/Linux
     - BSD Unix
@@ -68,6 +66,8 @@
         - Examples? The shell is a good example. Useful to understand that a program can reside in userland and still be part of the OS
         - Really good explanation of distinction between kernel and non-kernel programs [here](https://web.archive.org/web/20161008033553/https://superuser.com/questions/329442/what-is-there-in-an-operating-system-other-than-the-kernel/329479#329479)
       - Application Programs: all programs not associated w/ the OS
+
+---
 
 ###### Section 1.2 - Computer-System Organization
 
@@ -160,6 +160,8 @@
   - NVS (non volatile storage) brings a lot of overhead with I/O operations because the amount of data moved is high. To speed this up, `direct memory access` (DMA) is used.
     - once buffers, pointers and counters are set up, the device controller can bypass the CPU and transfer the data it needs to or from the device and main memory.
 
+---
+
 ###### Section 1.3 - Computer-System Architecture
 
   **1.3.1 Single-Processor Systems**
@@ -188,6 +190,8 @@
   - two sub-types
     - asymmetric clustering, one or more machines serve has a hot backup which takes over computing tasks if one of the primary systems fail
     - symmetrics clustering, all machines running workload, workloads of failed systems are picked up by operable peers
+
+---
 
 ###### Section 1.4 - Operating-System Operations
 
@@ -259,7 +263,9 @@
   - before turning over control to the user the os ensures the timer is set to interrupt
     - when the interrupt happens, control is tranferred automatically to the os
     - the os can then determine to treat the interrupt as a fatal error or give the program more time
-  
+
+---
+
 ###### Section 1.5 - Resource Management
 
   **1.5.1 Process Management**
@@ -336,6 +342,8 @@
     - a general device-driver interface
     - drivers for specific hardware devices
 
+---
+
 ###### Section 1.6 - Security and Protection
 
   - `protection` is any mechanism for controlling the access of processes or users to the resources defined by the computer system
@@ -344,6 +352,8 @@
   - `security` is the defense of the system from internal or external attacks
     - includes viruses, worms, ddos, theft of service
 
+---
+
 ###### Section 1.7 - Virtualization
 
   - `virtualization` is the technology that allows us to abstract the hardware (cpu, memory, disks, NICs) of a single machine into different execution environments, creating the semblance that each environment is running on its own system
@@ -351,12 +361,16 @@
   - `emulation` is related, it involves simulating computer hardware in software and is typically used when the source cpu is different from the target cpu type
     - eg, when apple switched from IBM Power CPU to Intelx86 CPU it included an emulation facility which allowed programs compiled for Power CPU to run on Intelx86
 
+---
+
 ###### Section 1.8 - Distributed Systems
 
   - distributed systems are simply a collection of physically separate computer system that are networked together to provide access to the various resources attached to the individual nodes
 
   - some operating systems are designed specifically with distributed systems in mind
   - a `network operating system` is on that provides features such as file sharing across the network or allowing processes on different nodes to communicate
+
+---
 
 ###### Section 1.9 - Kernel Data Structures
 
@@ -406,9 +420,13 @@
     - because of that, bitmaps are frequently used for status representation of a large number of resources
       - for instance, bitmaps are good for representing the availability of disk blocks
 
+---
+
 ###### Section 1.10 - Computing Environments
 
   This section was introductory and didn't expose novel information.
+
+---
 
 ###### Section 1.11 - Free and Open-Source Operating Systems
 
@@ -423,3 +441,62 @@
   - Stallman started work on gnu in 84 and published the manifesto shortly after
 
   **1.11.3 GNU/Linux**
+
+  - Free and open-sources
+  - Linus first released the kernel in 91
+
+  **1.11.3 BSD UNIX**
+
+  - started in 1978 as a derivative of AT&T's UNIX
+  - came from Berkeley
+
+---
+
+###### Practice Exercises
+
+  1.1 What are the three main purposes of an operating system
+    - Providing an environment in which to execute user programs
+    - Resource management (cpu, disk, peripherals, memory, etc)
+    - A control program to maintain the orderly and safe operation and orchestration of the system
+
+  1.2 We have stressed the need for an operating system to make efficient use of the computing hardware. When is it appropriate for the operating system to forsake this principle and to 'waste' resources? Why is such a system not really wasteful?
+    - Compromises that are specific to the application of the system must be made. For example, tons of cpu cycles will be lost maintaining a responsive GUI but those are critical to the experience of a single-user system.
+
+  1.3 What is the main difficulty that a programmer must overcome in writing an operating system for a real-time environment?
+    - By definition, real-time systems requires the computer to respond within a definite timeframe. For example, as the Space Shuttle is entering the atmosphere the computers must act at right time to deploy some internal systems or the result could be catastrophic.
+
+  1.4 Keeping in mind the various definitions of `operating system`, consider whether the operating system should include applications such as web browsers and mail programs. Argue both that it should, and that it should not, and support your answers.
+    - Should not: An operating system is designed to provide the orchestration, resource allocation and execution environment to operating a computer system. Operating Systems are already complicated and adding non-essential sub-systems further complicates the OS and exposes more surface area for bugs and vulnerabilities.
+    - Should: When the notion of an operating system was first pioneered, there was no concept of email, nor of web browsers. Today, email and browsing represent an extremely large percentage of user activity and the modern idea of an operating system should accomodate that. Including web browsers and email clients in the operating system means they will be written by the same folks maintaining the OS and thus should benefit from optimizations (derived from deep knowledge of the OS subsystems) that external developers might not know to implement. Additionally, if the OS is open-source it can help tamp down bugs and vulnerabilities in these important applications.
+
+  1.5 How does the distinction between kernel mode and user mode function as a rudimentary form of protection?
+    - By having the mode bit set to kernel mode, the operating system effectively prevents the chaos of allowing unvetted code to execute against the sensitive portions of the system. For example, a poorly constructed text editor might inadvertantly try to write data into a memory address for an entirely different process. The mode bit prevent such an action.
+
+  1.6 Which of the following instructions should be privileged?
+    - Set value of timer: Yes
+    - Read the clock: No
+    - Clear memory: Yes
+    - Issue a trap instruction: No
+    - Turn off interrupts: Yes
+    - Modify entries in device-status table: Yes
+    - Switch from user to kernel mode: No
+    - Access i/o device: Yes
+
+  1.7 Some early computers protected the operating system by placing it in a memory partition that could not be modified by either the user job or the operating system itself. Describe two difficuties that you think could arise with such a scheme.
+    - Updates, bug fixes, etc become a significant problem if the parition cannot be easily written to.
+    - If something happens to that partition, your OS is borked.
+
+  1.8 Some CPUs provide for more than two modes of operation. What are two possible uses of these multiple modes?
+    - a virtualization mode
+    - error handling mode
+
+  1.9 Timers could be used to compute the current time. Provider a short description of how this could be accomplished.
+
+  1.10 Give two reasons why caches are useful. What problems do they solve? What problems do they cause? If a cache can be made as large as the device for which it is cachine (for instance, a cache as large as a disk) why not make it large and eliminate that device?
+    - The primary value derived from caches is how they can speed up certain computer operations. Disks are orders of magnitude slower that memory that is located physically close to the CPU and doesn't require any mechanical operation (like a spinning disk). Additionally, caches make it easy for two separate parts of the system to references the same memory blocks.
+    - The classic problem caches is cache-busting. Knowing when a cache is holding modified data, and making sure all of the system (something clustered/distributed) knows it too is very challenging and it must be done perfectly for a reliable computer system.
+    - Caches are volatile, so they're no substitute for non-volatile storage.
+
+  1.11 Distinguish between the client-server and the peer-to-peer models of computing of distributed systems.
+    - In client-server, one system is is always responsible for running the backing application or distributing the data. That is the server, and clients are the various systems requesting those resources.
+    - In peer-to-peer, all systems are both client and server, capable of making and servicing requests.
