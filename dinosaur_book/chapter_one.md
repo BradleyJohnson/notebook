@@ -408,30 +408,18 @@
 
 ###### Section 1.10 - Computing Environments
 
-  **1.10.1 Traditional Computing**
-
-
-  **1.10.2 Mobile Computing**
-
-
-  **1.10.3 Client-Server Computing**
-
-
-  **1.10.4 Peer-to-Peer Computing**
-
-
-  **1.10.5 Cloud Computing**
-
-
-  **1.10.6 Real-Time Embedded Systems**
-
+  This section was introductory and didn't expose novel information.
 
 ###### Section 1.11 - Free and Open-Source Operating Systems
 
+  Free software free and open-source with no restrictions on usage, modification or redistribution. Open source, is open-source but might have limitations in usage, modification, or redistribution. All free software is open source but not all open source software is free software.
+
   **1.11.1 History**
 
+  - not much relevant info
 
   **1.11.2 Free Operating Systems**
 
+  - Stallman started work on gnu in 84 and published the manifesto shortly after
 
   **1.11.3 GNU/Linux**
