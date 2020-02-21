@@ -351,14 +351,14 @@
   - `emulation` is related, it involves simulating computer hardware in software and is typically used when the source cpu is different from the target cpu type
     - eg, when apple switched from IBM Power CPU to Intelx86 CPU it included an emulation facility which allowed programs compiled for Power CPU to run on Intelx86
 
-###### Section 1.6 - Distributed Systems
+###### Section 1.8 - Distributed Systems
 
   - distributed systems are simply a collection of physically separate computer system that are networked together to provide access to the various resources attached to the individual nodes
 
   - some operating systems are designed specifically with distributed systems in mind
   - a `network operating system` is on that provides features such as file sharing across the network or allowing processes on different nodes to communicate
 
-###### Section 1.6 - Kernel Data Structures
+###### Section 1.9 - Kernel Data Structures
 
   **1.9.1 Lists, Stacks, and Queues**
 
@@ -397,3 +397,41 @@
       - user enters their password
       - hash function is applied to the username
       - password is then compared to what was entered
+
+  **1.9.2 Bitmap**
+
+  - a `bitmap` is a string *n* binary digits that can be used to represent the status of *n* items.
+    - example: say the bitmap represents the availability of resources where 0 means available and 1 means unavailable
+    - a primary value of bitmaps is their space efficiency
+    - because of that, bitmaps are frequently used for status representation of a large number of resources
+      - for instance, bitmaps are good for representing the availability of disk blocks
+
+###### Section 1.10 - Computing Environments
+
+  **1.10.1 Traditional Computing**
+
+
+  **1.10.2 Mobile Computing**
+
+
+  **1.10.3 Client-Server Computing**
+
+
+  **1.10.4 Peer-to-Peer Computing**
+
+
+  **1.10.5 Cloud Computing**
+
+
+  **1.10.6 Real-Time Embedded Systems**
+
+
+###### Section 1.11 - Free and Open-Source Operating Systems
+
+  **1.11.1 History**
+
+
+  **1.11.2 Free Operating Systems**
+
+
+  **1.11.3 GNU/Linux**
