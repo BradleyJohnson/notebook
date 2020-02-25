@@ -60,3 +60,60 @@
   - It's like, personal preference or a matter of what work one is doing.... or something.
 
 ###### Section 2.3 - System Calls
+
+  - the simplest description is that `system calls` provide an interface to the services the OS provides
+    - some sys calls are made available as a C or C++ function
+    - sys calls interacting directly with hardware might be written in assembly
+
+  - **2.3.2 Application Programming Interface**
+
+  - most common APIs for application programmers
+    - Windows API
+    - POSIX API (nearly all UNIX, Linux, macOS)
+    - Java API for JVM
+  - programmers access the the api via a library
+    - in UNIX/Linux C programs, this is `libc`
+  
+  - another factor in handling system calls is the run-time environment (RTE)
+    - composed of all the software needed to execute an application
+      - compilers/interpreters, libraries, etc
+  - the RTE provides a system-call interface which intercepts function calls in the API and invokes the correct system call
+
+  - **2.3.3 Types of System Calls**
+
+  - system calls can be grouped into six major categories
+    - process control
+      - create/terminate processes
+      - load/execute processes
+      - get/set process attrs
+      - wait/signal event
+      - allocate and clear memory
+    - file management
+      - create/delete files
+      - open/close file
+      - read/write/reposition file
+      - get/set file attrs
+    - device management
+      - request/release device
+      - read/write/reposition device
+      - get/set device attrs
+      - logically attach/detach device
+    - information maintenance
+      - get/set time or date
+      - get/set system data
+      - get process, file, or device attrs
+      - set process, file, or device attrs
+    - communications
+      - create/delete communication connection
+      - send/receive messages
+      - transfer status information
+      - attach/detach remote devices
+    - protection
+      - get/set file permissions
+
+  - **2.3.3.1 Process Control**
+
+  - does some obvious things like start and terminate processes but here's a little more interesting example
+    - two processes are both accessing the same block of memory and it would be problematic for one process to change it while the other is reading it. therefore, the system call functions `acquire_lock()` and `release_lock()` are provided to make this concurrent access safe.
+
+  - **2.3.3.2 File Management**
