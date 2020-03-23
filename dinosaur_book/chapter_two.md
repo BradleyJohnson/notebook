@@ -162,7 +162,23 @@
 
 ###### Section 2.4 - System Services
 
+  - System service might also be called system utilities and we've basically already covered these.
+    - Some services are just interfaces to system calls and others might be a lot more complex
 
+  - File management
+    - create, delete, copy, rename, print, list, access and manipulate files
+  - Status information
+    - get date/time, amount of available memory/disk space, number of users
+    - detailed performance, logging, debugging information
+  - File modification
+    - text editors
+  - Programming-language support
+    - compilers, assemblers, debuggers, interpreters
+  - Program loading and execution
+    - absolute loaders, relocatable loaders, linkage editors, overlay loaders
+  - Communications
+    - send/receive messages between processes, users, computer systems
+  - Background services
+    - daemons
 
-
-
+###### Section 2.5 - Linkers and Loaders
