@@ -2,7 +2,20 @@
 #### Chapter Objectives
 
   - Identify services provided by an operating system
-    - NEEDS ANSWER
+    - File management
+      - create, delete, copy, rename, print, list, access and manipulate files
+    - Status information
+      - get date/time, amount of available memory/disk space, number of users
+      - detailed performance, logging, debugging information
+    - File modification
+      - text editors
+    - Programming-language support
+      - compilers, assemblers, debuggers, interpreters
+    - Program loading and execution
+      - absolute loaders, relocatable loaders, linkage editors, overlay loaders
+    - Communications
+      - send/receive messages between processes, users, computer systems
+    - Background services
   
   - Illustrate how system calls are used to provide operating system services
     - NEEDS ANSWER
@@ -182,3 +195,22 @@
     - daemons
 
 ###### Section 2.5 - Linkers and Loaders
+
+  - Before it can run on a CPU, a binary executable file must be brought into memory...
+    - source files are compiled into object files
+    - object files are loaded into any memory location and known as relocatable object file
+    - a linker combines (multiple in most cases) relocatable object files into a single binary executable file
+      - during this phase, other depedencies might be linked as well
+    - a loader is then used to load the binary executable file into memory where it can be run by the CPU
+  
+  - Some systems allow for dynamically linked library, where dependencies are linked as as the executable is loaded
+    - this can allow multiple processes to share linked libraries and save memory
+  
+  - object files and executable files usually have a standard format that includes
+    - the compiled machine code
+    - symbol table for metadata for functions and variables
+    - in Unix and Linux this format is ELF, Executable and Linkable Format
+
+  ###### Section 2.6 - Why Applications Are Operating-System Specific
+
+    - 
