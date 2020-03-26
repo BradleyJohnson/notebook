@@ -213,4 +213,25 @@
 
   ###### Section 2.6 - Why Applications Are Operating-System Specific
 
-    - 
+    - Nothing too surprising here. System calls are implemented differently across various OSes.
+
+    - Some ways to make applications available on more than 1 OS
+      - Use an interpreted language that has interpreters for multiples OSes
+      - Use a language that runs its own virtual machine
+      - Use a standard language or API that generates binaries to execute on the OS
+
+    - Other obstacles
+      - operating system library APIs that offer functionality to applications vary in their implementation
+      - each OS expects differing binary formats for applications
+      - different CPUs have different instruction sets (that's not really on the OS though?)
+    
+    - an Application Binary Interface (ABI)...
+      - defines how different components of binary code can interface for a given operating system on a given architecture
+      - specifies low-level details like address width, methods for passing params to syscalls, organization of the run-time stack, binary format of system files, size of datatypes, etc
+      - is usually specified for an architecture
+        - for instance there is an ABI for ARMv8
+        - so it's the architectural equivalent of an API
+
+  ###### Section 2.7 - Operating-System Design and Implementation
+
+  
