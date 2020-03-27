@@ -211,27 +211,62 @@
     - symbol table for metadata for functions and variables
     - in Unix and Linux this format is ELF, Executable and Linkable Format
 
-  ###### Section 2.6 - Why Applications Are Operating-System Specific
+###### Section 2.6 - Why Applications Are Operating-System Specific
 
-    - Nothing too surprising here. System calls are implemented differently across various OSes.
+  - Nothing too surprising here. System calls are implemented differently across various OSes.
 
-    - Some ways to make applications available on more than 1 OS
-      - Use an interpreted language that has interpreters for multiples OSes
-      - Use a language that runs its own virtual machine
-      - Use a standard language or API that generates binaries to execute on the OS
+  - Some ways to make applications available on more than 1 OS
+    - Use an interpreted language that has interpreters for multiples OSes
+    - Use a language that runs its own virtual machine
+    - Use a standard language or API that generates binaries to execute on the OS
 
-    - Other obstacles
-      - operating system library APIs that offer functionality to applications vary in their implementation
-      - each OS expects differing binary formats for applications
-      - different CPUs have different instruction sets (that's not really on the OS though?)
-    
-    - an Application Binary Interface (ABI)...
-      - defines how different components of binary code can interface for a given operating system on a given architecture
-      - specifies low-level details like address width, methods for passing params to syscalls, organization of the run-time stack, binary format of system files, size of datatypes, etc
-      - is usually specified for an architecture
-        - for instance there is an ABI for ARMv8
-        - so it's the architectural equivalent of an API
+  - Other obstacles
+    - operating system library APIs that offer functionality to applications vary in their implementation
+    - each OS expects differing binary formats for applications
+    - different CPUs have different instruction sets (that's not really on the OS though?)
+  
+  - an Application Binary Interface (ABI)...
+    - defines how different components of binary code can interface for a given operating system on a given architecture
+    - specifies low-level details like address width, methods for passing params to syscalls, organization of the run-time stack, binary format of system files, size of datatypes, etc
+    - is usually specified for an architecture
+      - for instance there is an ABI for ARMv8
+      - so it's the architectural equivalent of an API
 
-  ###### Section 2.7 - Operating-System Design and Implementation
+###### Section 2.7 - Operating-System Design and Implementation
+
+  - **2.7.1 Design Goals**
+
+  - Who/what are we designing for is primary design consideration.
+    - mobile, desktop, distributed, real-time?
+  - Beyond this, things get murky but there's two general guideposts
+    - user goals
+      - goals that achieve something for the end user eg
+        - reliable, convenient, easy to learn/use, safe, fast, etc
+        - these aren't terribly useful because they can be achieved in many different ways
+    - system goals
+      - goals that achieve something for the designers, developers, operators of the OS
+        - flexible, reliable, error free, effeicient
+        - again these can be interpreted many ways
+
+  - **2.7.2 Mechanisms and Policies**
+
+  - Separating mechanism and policy is an important design principle
+    - mechanism describes the 'how' to do something
+    - policy describes the 'what' needs doing
+    - for example, the timer contrsuct is a mechanism for cpu protection and deciding how long the timer is to be set if the policy decision
+
+    - this separation improves flexibility because
+      - policies are likely to change across time and place
+        - If the policy and mechanism are intertwined, this means that the mechanism needs to be changed everytime the policy is changed
+        - for example, consider a mechanism that gives preference on CPU time to one type of program over another...
+          - when properly separated the mechanism can work to give io intensive applications preference over CPU intensive applications, or vice versa.
+
+  - **2.7.3 Implementation**
+
+  - most early OSes were written entirely in assembly
+  - now some of the lowest level kernel modules are assembly but much of it is C or C++
+  - this helps portability, readiability, debugging, etc
+
+  ###### Section 2.8 - Operating-System Structure
 
   
