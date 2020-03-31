@@ -267,6 +267,29 @@
   - now some of the lowest level kernel modules are assembly but much of it is C or C++
   - this helps portability, readiability, debugging, etc
 
-  ###### Section 2.8 - Operating-System Structure
+###### Section 2.8 - Operating-System Structure
 
+  - In order to increase flexibility and make it easier to change over time, most OSes are designed as a number of modules that are separate so they can be easily changed.
+    - each module has separate, well-defined concerns and APIs
+  - Nevertheless, there are a number of common design choices here...
   
+  - **2.7.3 Monolithic Structure**
+    - No structure at all.
+    - Complex and hard to change but some performance benefit is realized from using a single file
+    - All kernel functionality in a single binary file that runs from a single memory location
+    - Linux is an example of this (kernel is a single bin file) but does a clever thing and allows for the kernel to be modified at run time and add or remove modules.
+
+  - **2.7.3 Layered Approach**
+    - system is designed with smaller, loosely coupled components
+    - simple to change and debug
+    - generally poor performance
+
+  - **2.7.3 Microkernels**
+    - removes all non-essentials components from the kernel and implementing them as user-level programs that live in a separate address space
+    - obviously, there's disagreement about what is essential
+      - generally though there's cpu/process/memory management and communications facility
+    - increases extensibility because all new services are added to user-space
+    - easier to maintain because of the reduced kernel surface area
+    - increased reliability and security because most services are running as user and therefore restricted
+    - Darwin/Mach is an example of a microkernel
+    - some performance overhead from increased system function calls
