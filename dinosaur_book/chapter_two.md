@@ -305,3 +305,37 @@
       - It's also modular because services can be dynamically added to the kernel
 
 ###### Section 2.9 - Building and Booting an Operating System
+
+- **2.9.2 System Boot**
+  - How does the system know where the kernel is to load it?...
+    1. a bootstrap program or boot loader locates the kernel
+    2. kernel is loaded into memory and started
+    3. kernel initialized hardware
+    4. the root file system is mounted
+
+###### Section 2.10 - Operating System Debugging
+
+- **2.10.1 Failure Analysis**
+  - if a process fails, typically errors are written to a log file or a core dump (including the process' memory) is taken and stored in a file
+  - failures in the kernel are crashed and there's a corresponding crash dump for instance
+
+- **2.10.2 Performance Monitoring and Tuning**
+  - debugging tools generally scope to either per-process or system-wide
+  - to make the observations we use one of two approaches
+    - counters
+    - tracing
+
+  - **2.10.2.1 Counters**
+    - OSs keep track of system activity via counters, for example, the number of system calls made or number of operations a network device executed
+
+    - Per-Process tools
+      - `ps` -- reports information about a single process or a selection og processes
+      - `top` -- reports real-time stats about currently alive processes
+    - System-Wide tools
+      - `vmstat` -- reports memory-usage stats
+      - `netstat` -- reports network interface stats
+      - `iostat` -- reports io usage for disks
+
+    - most counter based tools on Linux read stats from /proc fs
+
+- **2.10.3 Tracing**
