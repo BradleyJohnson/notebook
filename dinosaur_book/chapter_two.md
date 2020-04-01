@@ -273,18 +273,18 @@
     - each module has separate, well-defined concerns and APIs
   - Nevertheless, there are a number of common design choices here...
   
-  - **2.7.3 Monolithic Structure**
+  - **2.8.1 Monolithic Structure**
     - No structure at all.
     - Complex and hard to change but some performance benefit is realized from using a single file
     - All kernel functionality in a single binary file that runs from a single memory location
     - Linux is an example of this (kernel is a single bin file) but does a clever thing and allows for the kernel to be modified at run time and add or remove modules.
 
-  - **2.7.3 Layered Approach**
+  - **2.8.2 Layered Approach**
     - system is designed with smaller, loosely coupled components
     - simple to change and debug
     - generally poor performance
 
-  - **2.7.3 Microkernels**
+  - **2.8.3 Microkernels**
     - removes all non-essentials components from the kernel and implementing them as user-level programs that live in a separate address space
     - obviously, there's disagreement about what is essential
       - generally though there's cpu/process/memory management and communications facility
@@ -293,3 +293,15 @@
     - increased reliability and security because most services are running as user and therefore restricted
     - Darwin/Mach is an example of a microkernel
     - some performance overhead from increased system function calls
+
+  - **2.8.4 Modules**
+    - kernel has a set of core components and can link in additional services via modules at boot or run time
+      - these are Loadable Kernel Modules (LKMs)
+    - similar to but more efficient than microkernels because it does not need to invoke message passing for communication
+  
+  - **2.8.5 Hybrid Systems**
+    - Most operating systems end up as a hybrid, like Linux for example:
+      - It's monolithic because the operating system runs from one file in the same address space
+      - It's also modular because services can be dynamically added to the kernel
+
+###### Section 2.9 - Building and Booting an Operating System
