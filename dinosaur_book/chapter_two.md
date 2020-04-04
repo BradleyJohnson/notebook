@@ -16,21 +16,6 @@
     - Communications
       - send/receive messages between processes, users, computer systems
     - Background services
-  
-  - Illustrate how system calls are used to provide operating system services
-    - NEEDS ANSWER
-  
-  - Compare and contrast monolithic, layered, microkernel, modular, and hybrid strategies for designing operating systems
-    - NEEDS ANSWER
-  
-  - Illustrate the process for booting an operating system
-    - NEEDS ANSWER
-  
-  - Apply tools for monitoring operating system performance
-    - NEEDS ANSWER
-  
-  - Design and implement kernel modules for interacting with a Linux kernel
-    - NEEDS ANSWER
 
 ---
 
@@ -338,4 +323,20 @@
 
     - most counter based tools on Linux read stats from /proc fs
 
-- **2.10.3 Tracing**
+  - **2.10.3 Tracing**
+    - whereas counter type tools simply inquire about the current value of a stat that's maintained by the kernel tracing coolects data about all the steps in a specific event
+
+    - Per-Process tools
+      - `strace` -- traces system calls invoked by a process
+      - `gdb` -- a source level debugger
+    - System-Wide tools
+      - `perf` -- a collection of Linux perf tools
+      - `tcpdump` -- collects network packets
+
+  - **2.10.4 BCC**
+    - BCC (BCF Compiler Collection) is a toolkit for tracing features in Linux
+      - it's the front end to eBPF (extended Berkeley Packet Filter)
+      - eBPF programs written are in a subset of C which can be dynamically inserted into a running Linux system
+      - can collect traces for many different things
+
+    - BCC is written in Python and attempts to make it easier to write eBPF programs
