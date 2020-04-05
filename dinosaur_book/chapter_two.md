@@ -1,4 +1,4 @@
-# Chapter One :: Operating-Systen Structures
+# Chapter Two :: Operating-Systen Structures
 #### Chapter Objectives
 
   - Identify services provided by an operating system
