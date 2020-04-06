@@ -53,7 +53,7 @@
       - Ready - process is waiting to be assigned to a processor
       - Terminated - process is finished
 
-  - **3.1.2 Process Control Block**
+  - **3.1.3 Process Control Block**
     - each process is represented by a process control block (PCB)
        
        PCB  +------------------+
@@ -83,3 +83,19 @@
     - I/O status info: includes list of io devices allocated to the process, a lit of open files, etc
 
     - Ultimately, the PCB contains some metadata and everything needed to start, stop, or resume the process
+
+  - **3.1.4 Threads**
+    - Most operating systems have extended the process concept to allow a process have multiple threads and execute multiple instructions
+    - in OSes that support threading, the PCB includes information about threads
+
+###### Section 3.2 - Process Scheduling
+
+  - the objective of multitasking is to have some process runing at all times to maximize CPU utilization
+  - the objective of time sharing is to switch a CPU among competing processes
+  - a cpu scheduler is how to mesh these objectives which can be at odds in some cases
+    - cpu scheduler selects an available process to run on a processor
+      - in single core systems there will only ever be a single process executing
+      - multicore processes can run one process per core
+
+  -**3.2.1 Scheduling Queues**
+    - 
