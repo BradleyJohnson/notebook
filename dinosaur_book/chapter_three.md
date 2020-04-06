@@ -43,3 +43,43 @@
          0  +------------+
 
       - the stack and heap grow towards each other but must not overlap
+
+  - **3.1.2 Process State**
+    - as a process executes, it changes state
+    - states include:
+      - New - process is being created
+      - Running - instructions are being executed
+      - Waiting - process is waiting for an event
+      - Ready - process is waiting to be assigned to a processor
+      - Terminated - process is finished
+
+  - **3.1.2 Process Control Block**
+    - each process is represented by a process control block (PCB)
+       
+       PCB  +------------------+
+            |   process state  |
+            +------------------+
+            |  process number  |
+            +------------------+
+            |  program counter |
+            +------------------+
+            |                  |
+            |    registers     |
+            |                  |
+            +------------------+
+            |   memory limits  |
+            +------------------+
+            |list of open files|
+            +------------------+
+            |       etc        |
+            +------------------+
+
+    - Process State: current state
+    - Program Counter: address of the next instruction to be executed for the process
+    - CPU Registers: information about the registers being used
+    - CPU-Scheduling info: includes process priority, pointers to scheduling queues, and other scheduling parameters
+    - Memory-management info: value of base and limit registers and page/segment tables
+    - Accounting info: includes the amount of CPU and real time used, time limits, account numbers, etc
+    - I/O status info: includes list of io devices allocated to the process, a lit of open files, etc
+
+    - Ultimately, the PCB contains some metadata and everything needed to start, stop, or resume the process
