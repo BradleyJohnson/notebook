@@ -98,4 +98,13 @@
       - multicore processes can run one process per core
 
   -**3.2.1 Scheduling Queues**
+    - a new process that's `ready` will be put in the Ready Queue and the ready queue header will contain a reference to the first PCB and each PCB includes a pointer field that references the next PCB in the queue
+    - a process that has request some io or network activity will be put into a Wait Queue while it waits on the event to complete
+    - similarly, a process might be interrupted or run out of its alotted time in which case it will be put back into the ready queue
+
+  -**3.2.2 CPU Scheduling**
+    - a process lives its life migrating in and out of the ready and wait queues but it's the responsibility of the CPU Scheduler to pick from amongst the processes and apply it to a core
+    - some systems support `swapping` which will take a process out of memory and thus contention for CPU and thereby reduce overall load and later load the process back and continue with its execution.
+
+  -**3.2.3 Context Switch**
     - 
